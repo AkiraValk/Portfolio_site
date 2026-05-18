@@ -1,0 +1,426 @@
+/* ===========================
+   Variables & Base
+   =========================== */
+:root {
+	--bg: #a1a1a1;
+	--panel: #d8d8d8;
+	--panel-light: #eeeeee;
+	--header: #747474;
+	--accent: darkblue;
+	--accent-red: red;
+	--border: #333849;
+	--card-bg: #c7cbd8;
+	--card-inner: #EEEEFF;
+	--text: #111;
+	--font: Georgia, serif;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--bg);
+	margin: 0;
+	padding: 0;
+}
+
+main {
+	font-family: var(--font);
+	color: var(--text);
+}
+
+a {
+	color: var(--accent);
+}
+
+h2 {
+	text-align: center;
+	font-size: 20px;
+	text-decoration: underline;
+	margin: 0 0 10px 0;
+}
+
+h3 {
+	text-align: center;
+	font-size: 26px;
+	text-decoration: underline;
+	margin: 0;
+	padding-bottom: 10px;
+}
+
+h4 {
+	font-size: 20px;
+	text-decoration: underline;
+	color: darkblue;
+	margin: 10px 0 5px 0;
+}
+
+h5 {
+	margin: 8px 0 4px 0;
+}
+
+h6 {
+	color: navy;
+	margin: 0 0 8px 0;
+}
+
+
+/* ===========================
+   PAGE 1 — CV (index.html)
+   =========================== */
+
+#ct_grid {
+	min-width: 1000px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 7px;
+	gap: 7px;
+	padding: 5px;
+	grid-template-areas:
+		'head1 head1 head1 head1'
+		'figure head2 head2 navig'
+		'div    sec1  sec1  navig'
+		'div    sec1  sec1  navig'
+		'.      sec2  sec2  .'
+		'.      sec3  sec3  .'
+		'.      sec4  sec4  .'
+		'.      sec5  sec5  .'
+		'ftr    ftr   ftr   ftr';
+}
+
+#header1 {
+	grid-area: head1;
+	text-align: center;
+	background-color: var(--header);
+	font-size: 25px;
+	padding: 10px 0;
+}
+
+#header1 h1 {
+	margin: 0;
+}
+
+#header2 {
+	grid-area: head2;
+	text-align: justify;
+	background-color: var(--panel);
+	font-size: 18px;
+	padding: 20px;
+}
+
+#titrePP {
+	text-align: center;
+	text-decoration: underline;
+	font-size: 24px;
+	margin-bottom: 8px;
+}
+
+#dv {
+	grid-area: div;
+	background-color: var(--panel);
+	text-align: justify;
+	padding: 10px;
+	font-size: 16px;
+}
+
+#figure1 {
+	grid-area: figure;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.image-ronde {
+	width: 260px;
+	height: 260px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+#navig {
+	grid-area: navig;
+	background-color: var(--panel);
+	text-align: center;
+	font-size: 20px;
+	padding: 15px;
+}
+
+#nav0 {
+	text-align: center;
+	color: var(--accent-red);
+	font-size: 26px;
+	text-decoration: none;
+	margin: 0 0 10px 0;
+}
+
+#navig div {
+	text-align: center;
+	text-decoration: underline;
+	color: darkblue;
+	font-size: 18px;
+	margin: 8px 0;
+}
+
+#s1 {
+	grid-area: sec1;
+	background-color: var(--panel);
+	padding: 20px;
+	text-align: justify;
+	font-size: 18px;
+}
+
+#s2 {
+	grid-area: sec2;
+	background-color: var(--panel);
+	padding: 20px;
+	text-align: justify;
+	font-size: 18px;
+}
+
+#s3 {
+	grid-area: sec3;
+	background-color: var(--panel);
+	padding: 20px;
+	text-align: center;
+	font-size: 18px;
+}
+
+#s4 {
+	grid-area: sec4;
+	background-color: var(--panel);
+	padding: 20px;
+	font-size: 18px;
+}
+
+#s5 {
+	grid-area: sec5;
+	background-color: var(--panel);
+	padding: 20px;
+	text-align: justify;
+	font-size: 18px;
+}
+
+#foot {
+	grid-area: ftr;
+	background-color: var(--header);
+	text-align: center;
+	padding: 12px 0;
+}
+
+/* Skills layout */
+.conteneur {
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 15px;
+	background-color: var(--card-inner);
+	border: 2px var(--border) solid;
+	align-items: stretch;
+	min-height: 200px;
+}
+
+.flex-item {
+	border: 2px var(--border) solid;
+	flex: 0 0 220px;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: var(--card-bg);
+	overflow-x: auto;
+}
+
+#parag1 {
+	text-align: justify;
+}
+
+#c {
+	font-size: 16px;
+	padding-left: 20px;
+}
+
+#c li {
+	margin-bottom: 6px;
+}
+
+
+/* ===========================
+   PAGE 2 — Formations (page1.html)
+   =========================== */
+
+#grid_p2 {
+	min-width: 1000px;
+	display: grid;
+	grid-template-columns: 220px 1fr 1fr 200px;
+	grid-gap: 7px;
+	gap: 7px;
+	padding: 5px;
+	grid-template-areas:
+		'p2h1     p2h1     p2h1     p2h1'
+		'image1   section1 section1 nav'
+		'image2   section2 section2 nav'
+		'foot     foot     foot     foot';
+}
+
+#p2header1 {
+	grid-area: p2h1;
+	background-color: var(--header);
+	padding: 15px 20px;
+	text-align: center;
+}
+
+#p2header1 h1 {
+	margin: 0;
+	font-size: 26px;
+}
+
+#p2sec1 {
+	grid-area: section1;
+	background-color: var(--panel);
+	padding: 20px;
+	text-align: justify;
+	font-size: 18px;
+}
+
+#p2sec2 {
+	grid-area: section2;
+	background-color: var(--panel);
+	padding: 20px;
+	text-align: justify;
+	font-size: 18px;
+}
+
+#p2sec1 div,
+#p2sec2 div {
+	text-align: justify;
+	font-size: 17px;
+	margin-bottom: 10px;
+}
+
+#p2nav {
+	grid-area: nav;
+	background-color: var(--panel);
+	padding: 20px;
+	font-size: 18px;
+}
+
+#p2nav ol {
+	padding-left: 18px;
+}
+
+#p2nav ul {
+	padding-left: 16px;
+}
+
+#p2nav li {
+	margin-bottom: 4px;
+}
+
+#p2fig1 {
+	grid-area: image1;
+	margin-left: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+#p2fig2 {
+	grid-area: image2;
+	margin-left: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+#p2fig1 img,
+#p2fig2 img {
+	max-width: 100%;
+	height: auto;
+}
+
+#foot2 {
+	grid-area: foot;
+	background-color: var(--header);
+	text-align: center;
+	padding: 12px 0;
+}
+
+
+/* ===========================
+   PAGE 3 — Diplomes (page2.html)
+   =========================== */
+
+#grid_p3 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+	padding: 5px;
+	grid-template-areas:
+		'p3h1  p3h1'
+		'sc1   sc2'
+		'figu1 figu2'
+		'footr footr';
+}
+
+#head_p3 {
+	grid-area: p3h1;
+	background-color: var(--header);
+	padding: 20px;
+	text-align: center;
+}
+
+#head_p3 h1 {
+	margin: 0;
+	font-size: 26px;
+}
+
+#section_3_1 {
+	grid-area: sc1;
+	background-color: var(--panel);
+	padding: 20px;
+	text-align: center;
+	font-size: 22px;
+}
+
+#section_3_2 {
+	grid-area: sc2;
+	background-color: var(--panel);
+	padding: 20px;
+	text-align: center;
+	font-size: 22px;
+}
+
+#figure_3_1 {
+	grid-area: figu1;
+	background-color: var(--panel);
+	padding: 20px;
+	text-align: center;
+}
+
+#figure_3_2 {
+	grid-area: figu2;
+	background-color: var(--panel);
+	padding: 20px;
+	text-align: center;
+}
+
+#figure_3_1 img,
+#figure_3_2 img {
+	max-width: 100%;
+	height: auto;
+}
+
+#textebsc1,
+#textebsc2 {
+	padding: 10px 0;
+	font-size: 18px;
+}
+
+#foot3 {
+	grid-area: footr;
+	background-color: var(--header);
+	text-align: center;
+	padding: 12px 0;
+}

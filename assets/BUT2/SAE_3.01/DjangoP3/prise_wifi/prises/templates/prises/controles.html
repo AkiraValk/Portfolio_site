@@ -1,0 +1,45 @@
+{% extends 'prises/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'prises/controles.css' %}">
+{% block title %}Contrôle de la LED{% endblock %}
+{% block content %}
+
+<h2>Contrôle de la LED</h2>
+
+<div style="max-width:400px; margin:auto; text-align:center; padding: 20px;">
+  <button id="toggle-led-btn" style="font-size:1.5rem; padding:10px 20px;">
+    {% if etat_prise == '1' %}Éteindre la LED{% else %}Allumer la LED{% endif %}
+  </button>
+  <p>État actuel : <span id="etat-prise" style="font-weight:bold;">
+    {% if etat_prise == '1' %}ON{% else %}OFF{% endif %}
+  </span></p>
+</div>
+
+<script>
+const btn = document.getElementById('toggle-led-btn')
+const etatSpan = document.getElementById('etat-prise')
+
+btn.addEventListener('click', () => {
+  // Inverse l'état actuel
+  const newState = etatSpan.textContent === "ON" ? '0' : '1'
+
+  fetch('/switch_led/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRFToken': '{{ csrf_token }}'
+    },
+    body: 'state=' + newState
+  }).then(res => res.json())
+    .then(data => {
+      if(data.success) {
+        etatSpan.textContent = newState === '1' ? "ON" : "OFF"
+        btn.textContent = newState === '1' ? "Éteindre la LED" : "Allumer la LED"
+      } else {
+        alert("Erreur lors du changement d'état")
+      }
+    }).catch(() => alert("Erreur réseau"))
+})
+</script>
+
+{% endblock %}

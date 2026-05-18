@@ -1,0 +1,169 @@
+{% extends 'prises/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'prises/controles.css' %}">
+
+{% block title %}Contrôle des prises{% endblock %}
+
+{% block content %}
+
+<h2>Contrôle des prises</h2>
+
+<div class="prises-container">
+
+  <!-- Ligne 1: noms + switches -->
+  <div class="ligne1">
+    <div class="prise-inline">
+      <h3>Prise 1</h3>
+      <label class="switch">
+        <input type="checkbox" id="prise1-toggle" {% if etat_prise == '1' %}checked{% endif %}>
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div class="prise-inline">
+      <h3>Prise 2</h3>
+      <label class="switch">
+        <input type="checkbox" id="prise2-toggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Ligne 2 : état + programmation -->
+  <div class="ligne2">
+    <div class="prise-inline">
+      <p>État : <span id="etat-prise1" class="etat">
+        {% if etat_prise == '1' %}ON{% else %}OFF{% endif %}
+      </span></p>
+      <p>Programmation activée : <span id="prog-prise1">Oui</span></p>
+    </div>
+    <div class="prise-inline">
+      <p>État : <span id="etat-prise2" class="etat">OFF</span></p>
+      <p>Programmation des plages horaires activée : <span id="prog-prise2">Non</span></p>
+    </div>
+  </div>
+
+</div>
+
+<style>
+.prises-container {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ligne1, .ligne2 {
+  display: flex;
+  justify-content: space-around;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.prise-inline {
+  min-width: 280px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ligne2 .prise-inline {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.etat {
+  font-weight: bold;
+}
+
+/* Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 44px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 44px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 36px;
+  width: 36px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #28a745;
+}
+
+input:checked + .slider:before {
+  transform: translateX(36px);
+}
+
+.slider.round {
+  border-radius: 44px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Responsive */
+@media (max-width: 680px) {
+  .ligne1, .ligne2 {
+    justify-content: center;
+    gap: 2rem;
+  }
+  .prise-inline {
+    min-width: 90vw;
+    justify-content: space-between;
+  }
+  .ligne2 .prise-inline {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+</style>
+
+<script>
+document.getElementById('prise1-toggle').addEventListener('change', function() {
+  var state = this.checked ? '1' : '0';
+  fetch('/switch_led/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRFToken': '{{ csrf_token }}'
+    },
+    body: 'state=' + state
+  }).then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        document.getElementById('etat-prise1').textContent = state === '1' ? 'ON' : 'OFF';
+      } else {
+        alert('Erreur lors du changement d’état');
+      }
+    });
+});
+</script>
+
+{% endblock %}
