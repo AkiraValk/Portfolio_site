@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>{% block title %}Prise Connectée WiFi{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'prises/style.css' %}">
+
+</head>
+<body>
+<header class="bg-primary text-white p-3">
+    <h1>Prise Connectée WiFi</h1>
+</header>
+
+<main class="container mt-4">
+    {% block content %}
+    <!-- Contenu spécifique à chaque page sera inséré ici -->
+    {% endblock %}
+</main>
+
+<footer class="text-center mt-5 mb-3">
+    © Projet SAE Prise Connectée - IUT Colmar - Chloé / Ethan / Pierre / Nathan
+</footer>
+
+</body>
+</html>
