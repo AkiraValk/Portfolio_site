@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SAÉ BUT — Chloé CHARON</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #050810;
+      --bg2:      #0a0f1e;
+      --panel:    #0d1428;
+      --cyan:     #00f5ff;
+      --cyan-dim: #00b8bf;
+      --magenta:  #ff00aa;
+      --green:    #00ff88;
+      --yellow:   #f0c060;
+      --text:     #c8d8f0;
+      --text-dim: #5a7090;
+      --border:   rgba(0,245,255,0.15);
+      --glow:     0 0 20px rgba(0,245,255,0.3);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    .cursor {
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+      width: 20px; height: 20px;
+      border: 1px solid var(--cyan); border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width .2s, height .2s, background .2s;
+      mix-blend-mode: screen;
+    }
+    .cursor-dot {
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+      width: 4px; height: 4px; background: var(--cyan); border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px; pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px
+      );
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(5,8,16,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--cyan); letter-spacing: .2em;
+      text-shadow: var(--glow); text-decoration: none;
+    }
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    nav a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--text-dim); text-decoration: none;
+      position: relative; padding-bottom: 4px; transition: color .3s;
+    }
+    nav a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+      background: var(--cyan); transition: width .3s;
+    }
+    nav a:hover { color: var(--cyan); }
+    nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--cyan); }
+    nav a.active::after { width: 100%; }
+
+    /* PAGE HEADER */
+    .page-header {
+      position: relative; z-index: 2;
+      padding: 9rem 5rem 4rem;
+      border-bottom: 1px solid var(--border);
+      animation: fadeInDown .6s ease both;
+    }
+    .page-header .tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .7rem; letter-spacing: .3em;
+      color: var(--magenta); text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+    .page-header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900; color: #fff;
+      text-shadow: 0 0 40px rgba(0,245,255,0.15);
+    }
+    .page-header h1 span { color: var(--cyan); }
+    .page-header p {
+      margin-top: 1rem;
+      font-size: 1.05rem; color: var(--text-dim); max-width: 700px; line-height: 1.7;
+    }
+
+    /* CONTENT */
+    .content {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto;
+      padding: 4rem 5rem;
+    }
+
+    .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .65rem; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--cyan); margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    /* GRILLE SAE */
+    .sae-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .sae-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+      text-decoration: none;
+    }
+    .sae-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      opacity: 0; transition: opacity .3s;
+    }
+    .sae-card:hover { transform: translateY(-3px); box-shadow: var(--glow); }
+    .sae-card:hover::before { opacity: 1; }
+
+    .sae-card.c1::before { background: linear-gradient(90deg, var(--magenta), #ff66cc); }
+    .sae-card.c2::before { background: linear-gradient(90deg, var(--cyan), var(--cyan-dim)); }
+    .sae-card.c3::before { background: linear-gradient(90deg, var(--green), #00ccaa); }
+    .sae-card.c1:hover { border-color: rgba(255,0,170,0.35); box-shadow: 0 0 20px rgba(255,0,170,0.2); }
+    .sae-card.c2:hover { border-color: rgba(0,245,255,0.35); }
+    .sae-card.c3:hover { border-color: rgba(0,255,136,0.35); box-shadow: 0 0 20px rgba(0,255,136,0.2); }
+    .sae-card.c4::before { background: linear-gradient(90deg, var(--yellow), #ffaa00); }
+    .sae-card.c5::before { background: linear-gradient(90deg, #aa88ff, #6644cc); }
+    .sae-card.c4:hover { border-color: rgba(240,192,96,0.35); box-shadow: 0 0 20px rgba(240,192,96,0.2); }
+    .sae-card.c5:hover { border-color: rgba(170,136,255,0.35); box-shadow: 0 0 20px rgba(170,136,255,0.2); }
+    .sae-card.c4 .sae-id { color: var(--yellow); border-color: rgba(240,192,96,0.4); background: rgba(240,192,96,0.06); }
+    .sae-card.c5 .sae-id { color: #aa88ff; border-color: rgba(170,136,255,0.4); background: rgba(170,136,255,0.06); }
+
+    .sae-card.c1c3::before { background: linear-gradient(90deg, var(--magenta), var(--green)); }
+    .sae-card.c1c3:hover { border-color: rgba(255,0,170,0.3); box-shadow: 0 0 20px rgba(0,255,136,0.15); }
+
+    .sae-card.c2c3::before { background: linear-gradient(90deg, var(--cyan), var(--green)); }
+    .sae-card.c2c3:hover { border-color: rgba(0,245,255,0.3); box-shadow: 0 0 20px rgba(0,255,136,0.15); }
+
+    .sae-card.c1c2c3::before { background: linear-gradient(90deg, var(--magenta), var(--cyan), var(--green)); }
+    .sae-card.c1c2c3:hover { border-color: rgba(0,245,255,0.3); box-shadow: var(--glow); }
+
+    .sae-card.c4c5::before { background: linear-gradient(90deg, var(--yellow), #aa88ff); }
+    .sae-card.c4c5:hover { border-color: rgba(170,136,255,0.3); box-shadow: 0 0 20px rgba(240,192,96,0.15); }
+
+    .sae-card.c1c2c4c5::before { background: linear-gradient(90deg, var(--magenta), var(--cyan), var(--yellow), #aa88ff); }
+    .sae-card.c1c2c4c5:hover { border-color: rgba(0,245,255,0.3); box-shadow: var(--glow); }
+
+    .sae-card.all::before { background: linear-gradient(90deg, var(--magenta), var(--cyan), var(--green), var(--yellow), #aa88ff); }
+    .sae-card.all:hover { border-color: rgba(0,245,255,0.3); box-shadow: var(--glow); }
+
+    .sae-comp-badges { display: flex; flex-direction: column; gap: .2rem; align-items: flex-end; }
+    .sae-comp-badge-pill {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem; letter-spacing: .08em; text-transform: uppercase;
+      padding: .15rem .5rem; border: 1px solid; white-space: nowrap;
+    }
+    .badge-c1 { color: var(--magenta); border-color: rgba(255,0,170,0.3); }
+    .badge-c2 { color: var(--cyan);    border-color: rgba(0,245,255,0.3); }
+    .badge-c3 { color: var(--green);   border-color: rgba(0,255,136,0.3); }
+    .badge-c4 { color: var(--yellow);  border-color: rgba(240,192,96,0.3); }
+    .badge-c5 { color: #aa88ff;        border-color: rgba(170,136,255,0.3); }
+
+    .sae-card.c1c3 .sae-id {
+      background: linear-gradient(90deg, var(--magenta), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      border-color: rgba(255,0,170,0.4);
+      background-color: rgba(0,255,136,0.04);
+    }
+    .sae-card.c2c3 .sae-id {
+      background: linear-gradient(90deg, var(--cyan), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      border-color: rgba(0,245,255,0.4);
+      background-color: rgba(0,255,136,0.04);
+    }
+    .sae-card.c1c2c3 .sae-id {
+      background: linear-gradient(90deg, var(--magenta), var(--cyan), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      border-color: rgba(0,245,255,0.4);
+      background-color: rgba(0,245,255,0.04);
+    }
+    .sae-card.c4c5 .sae-id {
+      background: linear-gradient(90deg, var(--yellow), #aa88ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      border-color: rgba(240,192,96,0.4);
+      background-color: rgba(170,136,255,0.04);
+    }
+    .sae-card.c1c2c4c5 .sae-id {
+      background: linear-gradient(90deg, var(--magenta), var(--cyan), var(--yellow), #aa88ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      border-color: rgba(0,245,255,0.4);
+      background-color: rgba(0,245,255,0.04);
+    }
+    .sae-card.all .sae-id {
+      background: linear-gradient(90deg, var(--magenta), var(--cyan), var(--green), var(--yellow), #aa88ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      border-color: rgba(0,245,255,0.4);
+      background-color: rgba(0,245,255,0.04);
+    }
+    
+    .sae-card.all .sae-title {
+      background: linear-gradient(90deg, var(--magenta), var(--cyan), var(--green), var(--yellow), #aa88ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sae-card-top {
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 1rem;
+    }
+    .sae-id {
+      font-family: 'Orbitron', sans-serif;
+      font-size: .75rem; font-weight: 700; letter-spacing: .12em;
+      padding: .3rem .8rem; border: 1px solid;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .sae-card.c1 .sae-id { color: var(--magenta); border-color: rgba(255,0,170,0.4); background: rgba(255,0,170,0.06); }
+    .sae-card.c2 .sae-id { color: var(--cyan);    border-color: rgba(0,245,255,0.4);  background: rgba(0,245,255,0.06); }
+    .sae-card.c3 .sae-id { color: var(--green);   border-color: rgba(0,255,136,0.4);  background: rgba(0,255,136,0.06); }
+
+    .sae-comp-badge {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .58rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-dim); text-align: right; line-height: 1.4;
+    }
+
+    .sae-card-body { padding: 1.2rem 1.5rem; flex: 1; display: flex; flex-direction: column; gap: .8rem; }
+
+    .sae-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: .95rem; font-weight: 700;
+      color: #fff; letter-spacing: .04em; line-height: 1.3;
+    }
+
+    .sae-desc {
+      font-size: .92rem; line-height: 1.65; color: var(--text-dim); flex: 1;
+    }
+    .sae-desc strong { color: var(--text); font-weight: 500; }
+
+    /* Section anglais */
+    .sae-en {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+      background: rgba(0,245,255,0.02);
+    }
+    .sae-en-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .55rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: .4rem;
+    }
+    .sae-en-label::before { content: '// EN · '; color: var(--cyan); }
+    .sae-en p {
+      font-size: .88rem; line-height: 1.6; color: var(--text-dim);
+      font-style: italic;
+    }
+
+    .sae-card-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+    }
+    .sae-techs { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .tech-pill {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .58rem; letter-spacing: .08em;
+      padding: .2rem .5rem;
+      border: 1px solid rgba(240,192,96,0.3);
+      color: var(--yellow); background: rgba(240,192,96,0.05);
+    }
+    .sae-link {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .62rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--cyan); text-decoration: none;
+      display: flex; align-items: center; gap: .3rem;
+      transition: color .2s; white-space: nowrap;
+    }
+    .sae-link:hover { color: #fff; }
+    .sae-link svg { transition: transform .2s; }
+    .sae-link:hover svg { transform: translateX(3px); }
+
+    /* LEGENDE */
+    .legende {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding: 1.2rem 1.5rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+    }
+    .legende-item {
+      display: flex; align-items: center; gap: .6rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .62rem; letter-spacing: .1em; color: var(--text-dim);
+    }
+    .legende-dot {
+      width: 10px; height: 10px; flex-shrink: 0;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: .15; margin: 1rem 0 3rem;
+    }
+
+    /* BACK */
+    .back-section {
+      position: relative; z-index: 2;
+      padding: 3rem 5rem 5rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .8rem; letter-spacing: .15em; text-transform: uppercase;
+      padding: .9rem 2rem;
+      border: 1px solid var(--cyan); color: var(--cyan);
+      background: transparent; text-decoration: none;
+      position: relative; overflow: hidden; cursor: none; transition: color .3s;
+    }
+    .btn::before {
+      content: ''; position: absolute; inset: 0; background: var(--cyan);
+      transform: translateX(-100%);
+      transition: transform .3s cubic-bezier(.4,0,.2,1); z-index: -1;
+    }
+    .btn:hover { color: var(--bg); }
+    .btn:hover::before { transform: translateX(0); }
+
+    footer {
+      position: relative; z-index: 2;
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .65rem; letter-spacing: .15em; color: var(--text-dim);
+    }
+    footer span { color: var(--cyan); }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { gap: 1.2rem; }
+      .page-header, .content, .back-section, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .back-section { flex-direction: column; }
+      .sae-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">PORTFOLIO</a>
+    <ul>
+      <li><a href="index.html#about">À propos</a></li>
+      <li><a href="parcours.html">Parcours</a></li>
+      <li><a href="but1.html">BUT 1</a></li>
+      <li><a href="but2.html">BUT 2</a></li>
+      <li><a href="projet-integratif.html">Projet Intégratif</a></li>
+      <li><a href="stage.html">Stage</a></li>
+      <li><a href="sae-but1.html" class="active">Sae-BUT</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="tag">BUT R&T</div>
+    <h1>SAÉ <span>BUT</span></h1>
+    <p>Toutes les Situations d'Apprentissage et d'Évaluation de mes années de BUT Réseaux & Télécommunications, parcours Cybersécurité — IUT de Colmar.</p>
+  </div>
+
+  <div class="content">
+
+    <!-- LÉGENDE -->
+    <div class="legende">
+      <div class="legende-item">
+        <svg class="legende-dot" viewBox="0 0 10 10"><rect width="10" height="10" fill="#ff00aa" opacity=".7"/></svg>
+        C1 — Administrer
+      </div>
+      <div class="legende-item">
+        <svg class="legende-dot" viewBox="0 0 10 10"><rect width="10" height="10" fill="#00f5ff" opacity=".7"/></svg>
+        C2 — Connecter
+      </div>
+      <div class="legende-item">
+        <svg class="legende-dot" viewBox="0 0 10 10"><rect width="10" height="10" fill="#00ff88" opacity=".7"/></svg>
+        C3 — Programmer
+      </div>
+      <div class="legende-item">
+        <svg class="legende-dot" viewBox="0 0 10 10"><rect width="10" height="10" fill="#f0c060" opacity=".7"/></svg>
+        C4 — Sécuriser
+      </div>
+      <div class="legende-item">
+        <svg class="legende-dot" viewBox="0 0 10 10"><rect width="10" height="10" fill="#aa88ff" opacity=".7"/></svg>
+        C5 — Surveiller
+      </div>
+    </div>
+
+    <div class="section-label">SEMESTRE 1</div>
+
+    <div class="sae-grid">
+
+      <!-- SAE 1.01 -->
+      <div class="sae-card c1">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 1.01</span>
+           <span class="sae-comp-badge-pill badge-c1">C1 - Administrer</span>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Sensibilisation à l'hygiène informatique</div>
+          <p class="sae-desc">Recherches approfondies sur les dangers d'internet — collecte de données, <strong>phishing</strong> et piratage. Réalisation d'un exposé de sensibilisation sur les techniques d'hameçonnage et les usurpateurs d'identité.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Researched cybersecurity threats including phishing and identity theft. Delivered a presentation to raise awareness on safe internet practices.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">Cybersécurité</span>
+            <span class="tech-pill">PowerPoint</span>
+          </div>
+          <a href="https://canva.link/brocg7e8os1ugom" target="_blank" class="sae-link">
+            Voir le PowerPoint
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- SAE 1.02 -->
+      <div class="sae-card c1">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 1.02</span>
+           <span class="sae-comp-badge-pill badge-c1">C1 - Administrer</span>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">S'initier aux réseaux informatiques</div>
+          <p class="sae-desc">Configuration du réseau d'une succursale type pour l'entreprise Rudy and Theodor Company. Mise en place de <strong>VLANs</strong> (direction, utilisateurs, serveurs, admin réseau) et simulation sur <strong>EVE-NG</strong>.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Configured a branch office network with VLANs, routers and switches. Simulated the full topology on EVE-NG inside a virtual machine.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">EVE-NG</span>
+            <span class="tech-pill">VLAN</span>
+            <span class="tech-pill">Cisco</span>
+          </div>
+          <a href="https://github.com/AkiraValk/portfolio/tree/main/assets/BUT1/SAE1.02_IRI" target="_blank" class="sae-link">
+            Voir les fichiers
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- SAE 1.03 -->
+      <div class="sae-card c2">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 1.03</span>
+          <span class="sae-comp-badge-pill badge-c2">C2 - Connecter</span>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Découvrir un dispositif de transmission</div>
+          <p class="sae-desc">Projet en groupe de 4 : installation d'un réseau <strong>WiFi</strong> en salle, mesures sur les transmissions, simulation sur <strong>Packet Tracer</strong>, câblage des équipements et réalisation d'une <strong>heatmap</strong> de couverture réseau. Soutenance finale par Q&R.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Deployed a WiFi network, performed signal measurements, simulated on Packet Tracer and produced a coverage heatmap of the building.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">Packet Tracer</span>
+            <span class="tech-pill">Heatmap</span>
+            <span class="tech-pill">WiFi</span>
+          </div>
+          <a href="https://github.com/AkiraValk/portfolio/tree/main/assets/BUT1/SAE1.03_DDT" target="_blank" class="sae-link">
+            Voir les fichiers
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- SAE 1.04 -->
+      <div class="sae-card c3">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 1.04</span>
+          <span class="sae-comp-badge-pill badge-c3">C3 - Programmer</span>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Se présenter sur internet</div>
+          <p class="sae-desc">Création d'un <strong>CV en ligne</strong> multipage : profil, formation, diplômes, expériences et compétences. Mise en page gérée par un fichier CSS unique. Chaque section renvoie vers des pages détaillées.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Built a multi-page online resume using HTML and CSS. Learned to structure web content and manage a consistent stylesheet across multiple pages.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">HTML</span>
+            <span class="tech-pill">CSS</span>
+          </div>
+          <a href="https://github.com/AkiraValk/portfolio/tree/main/assets/BUT1/SAE1.04_SPSI" target="_blank" class="sae-link">
+            Voir les fichiers
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- SAE 1.05 -->
+      <div class="sae-card c3">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 1.05</span>
+          <span class="sae-comp-badge-pill badge-c3">C3 - Programmer</span>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Traiter les données</div>
+          <p class="sae-desc">Développement d'un outil de <strong>reporting</strong> analysant une arborescence de fichiers, localisant ceux dépassant un seuil de taille (1 Mo / 10 Mo...) et retournant les 100 plus volumineux. Scripts <strong>Python</strong> et <strong>PowerShell</strong>.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Developed a file reporting tool in Python and PowerShell to scan directory trees, filter by file size and export sorted results.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">PowerShell</span>
+          </div>
+          <a href="https://github.com/AkiraValk/portfolio/tree/main/assets/BUT1/SAE1.05_TLD" target="_blank" class="sae-link">
+            Voir les fichiers
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-label">SEMESTRE 2</div>
+
+    <div class="sae-grid">
+
+      <!-- SAE 2.01 -->
+      <div class="sae-card c1">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 2.01</span>
+          <span class="sae-comp-badge-pill badge-c1">C1 - Administrer</span>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Construire un réseau informatique pour une petite structure</div>
+          <p class="sae-desc">Conception d'un réseau local sur <strong>GNS3</strong> avec plusieurs VLANs pour différents groupes d'utilisateurs, segmentation de l'adressage IP et configuration des services associés.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Designed a LAN on GNS3 with multiple VLANs, IP segmentation and inter-VLAN routing for a small company infrastructure.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">GNS3</span>
+            <span class="tech-pill">VLAN</span>
+            <span class="tech-pill">Routage</span>
+          </div>
+          <p>Les fichiers GNS3 sont trop volumineux pour être herbergés sur github. Cependant, des exemples de topologies ainsi que quelque fichiers sont trouvables dans d'autres rubriques de mon portfolio.</p>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- SAE 2.02 -->
+      <div class="sae-card c2">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 2.02</span>
+          <span class="sae-comp-badge-pill badge-c2">C2 - Connecter</span>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Mesurer et caractériser un signal et un système</div>
+          <p class="sae-desc">Réalisation d'une <strong>Web Radio portable</strong> avec un ESP32 et un module VS1053, capable de lire des radios internet en MP3/AAC sur casque ou haut-parleurs. Contrôle des stations, du volume et des effets audio. Intégration <strong>MQTT</strong> pour la réception et l'envoi de données.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Built a portable internet radio using ESP32 and VS1053. Integrated MQTT for data exchange and managed audio controls (volume, stations, effects).</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">ESP32</span>
+            <span class="tech-pill">MQTT</span>
+            <span class="tech-pill">Arduino</span>
+          </div>
+          <a href="https://github.com/AkiraValk/portfolio/tree/main/assets/BUT1/SAE2.02_MPSS" target="_blank" class="sae-link">
+            Voir les fichiers
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- SAE 2.03 -->
+      <div class="sae-card c2c3">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 2.03</span>
+          <div class="sae-comp-badges">
+            <span class="sae-comp-badge-pill badge-c2">C2 — Connecter</span>
+            <span class="sae-comp-badge-pill badge-c3">C3 — Programmer</span>
+          </div>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Mettre en place une solution informatique pour l'entreprise</div>
+          <p class="sae-desc">Développement en groupe d'un site web <strong>Django</strong> pour gérer une base de données cinéma (Films, Catégories, Personnes, Commentaires, Acteurs). Hébergé sur VM avec <strong>Gunicorn + Nginx</strong>, base <strong>MariaDB</strong> sur VM séparée et inaccessible de l'extérieur.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Built a Django web app with full CRUD operations on a cinema MariaDB database. Deployed with Gunicorn and Nginx across two virtual machines for security.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">Django</span>
+            <span class="tech-pill">MariaDB</span>
+            <span class="tech-pill">Nginx</span>
+            <span class="tech-pill">Gunicorn</span>
+          </div>
+          <a href="https://github.com/AkiraValk/portfolio/tree/main/assets/BUT1/SAE2.03_MPSI" target="_blank" class="sae-link">
+            Voir les fichiers
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="sae-card c1c2c3">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 2.04</span>
+          <div class="sae-comp-badges">
+            <span class="sae-comp-badge-pill badge-c1">C1 — Administrer</span>
+            <span class="sae-comp-badge-pill badge-c2">C2 — Connecter</span>
+            <span class="sae-comp-badge-pill badge-c3">C3 — Programmer</span>
+          </div>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Projet Intégratif</div>
+          <p class="sae-desc">Projet de fin d'année mettant en oeuvre toute les compétences acquise au fil de la première année. L'objectif, Installer un petit réseau d'entreprise avec de la téléphonie, une partie Admin, une partie Utilisateur ainsi qu'une partie web.
+          Cet saé utlise toute les compétences en Programmation (<Strong>Django, Nginx, Gunicorn, HTML, CSS, MQTT, Arduino</Strong>), les compétences en réseau (<strong>VLAN, Routage, DNS, DHCP, ACL, Etc...</strong>), avec en fin les compétences d'administration (<strong>Port Mirroring switch, Logs serveurs, liens redondans, etc...</strong>).
+          </p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Year‑end project that brings together all the skills acquired during the first year. The goal is to set up a small enterprise network with telephony, an Admin network, a User network, and a web part.
+          This project uses all the programming skills (Django, Nginx, Gunicorn, HTML, CSS, MQTT, Arduino), as well as networking skills (VLAN, routing, DNS, DHCP, ACL, etc.), and finally administration skills (port mirroring on switches, server logs, redundant links, etc.).</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">HTML</span>
+            <span class="tech-pill">Arduino</span>
+            <span class="tech-pill">MQTT</span>
+            <span class="tech-pill">Python | Django</span>
+            <span class="tech-pill">Nginx | Gunicorn</span>
+            <span class="tech-pill">ACL / VLAN</span>
+          </div>
+          <a href="https://akiravalk.github.io/portfolio/projet-integratif.html" target="_blank" class="sae-link">
+            Voir la page du projet intégratif
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="sae-card c1c2c3">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 2.05</span>
+          <div class="sae-comp-badges">
+            <span class="sae-comp-badge-pill badge-c1">C1 — Administrer</span>
+            <span class="sae-comp-badge-pill badge-c2">C2 — Connecter</span>
+            <span class="sae-comp-badge-pill badge-c3">C3 — Programmer</span>
+          </div>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Portfolio</div>
+          <p class="sae-desc">Créer un portfolio dans le but de pouvoir répertorier chaque projet et chaque compétences acquise au cours de nos études. Le portfolio était hébergé sur mahara, mais, j'ai pris la décision d'heberger mon propre site pour pkus de libertée.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Create a portfolio with the aim of listing each project and every skill acquired throughout our studies. The portfolio was originally hosted on Mahara, but I decided to host my own website for more freedom.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">HTML</span>
+            <span class="tech-pill">CSS</span>
+            <span class="tech-pill">Communication</span>
+          </div>
+          <a href="https://akiravalk.github.io/portfolio/index.html" target="_blank" class="sae-link">
+            Voir le site (page d'accueil)
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-label">SEMESTRE 3</div>
+
+    <div class="sae-grid">
+
+      <div class="sae-card c2">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 3.01</span>
+          <span class="sae-comp-badge-pill badge-c2">C2 - Connecter</span>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Mettre en oeuvre un dispositif de transmission</div>
+          <p class="sae-desc">Projet en groupe de 4 : Réalisation d'une prise connéctée intelligente. Gérer un nombre de paramètre défini en dur directement sur la prise, sur la page web ainsi que sur l'application androide aussi coder pour être directement connécté à la prise.
+          Utilisation de <strong>Django, Arduino, Python et Broker</strong> pour réaliser ce projet. 
+          </br>
+          Fonction de la prise :</br>
+          - ON / OFF de la prise depuis bouton poussoir (visible sur site/app)</br>
+          - Bouton ON/OFF sur site/Application avec retour </br>
+          - Plages horaires ON/OFF depuis le web/application.
+          - Affichage de temp reçus depuis le capteur de la prise (web/android), avec seuil de détéction de dépassement de temp choisi par l'utilisateur. (Affichage d'un warning par notifs sur web/android + mail envoyé à l'utilisateur depuis code arduino)
+          </p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Group project of 4: Development of a smart connected plug. Manage a set of predefined parameters directly on the plug, on the web page, and on the Android application, which is also developed to connect directly to the plug.</br>
+Features:
+* Turn on/off the plug using a push button (status visible on the website/application).
+* ON/OFF button on the website/application with feedback.
+* Two time slots for turning the plug on and off from the web page/application
+* Display of temperature received from the plug’s sensor (on web page/Android), and implementation of a temperature threshold defined by the user. (Display of a warning via notifs on web/Android + email sent to the user from arduino code).</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">Djangor</span>
+            <span class="tech-pill">Broker</span>
+            <span class="tech-pill">Arduino</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">MQTT</span>
+            <span class="tech-pill">Pushbullet</span>
+            <span class="tech-pill">MIT App Inventor</span>
+          </div>
+          <a href="https://github.com/AkiraValk" target="_blank" class="sae-link">
+            Voir les fichiers
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+      
+       <div class="sae-card c1c3">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 3.02</span>
+          <div class="sae-comp-badges">
+            <span class="sae-comp-badge-pill badge-c1">C1 — Administrer</span>
+            <span class="sae-comp-badge-pill badge-c3">C3 — Programmer</span>
+          </div>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Développer des applications communicantes</div>
+          <p class="sae-desc">Mise en place d'un service de communication avec des codes python. Coder un nombre donné de clients et de routeurs, avec 1 serveur de stockage (SQL) pour permettre à une entreprise de communiquer efficacement à travers un réseau tout en chiffrant les messages lors du passage dans celui-ci. Le code client permet à l'utilisateur de choisir le nombre de routeurs traversés, pour crypter un message en chaîne <strong>(réseau Thor)</strong>. Puis, à chaque passage dans un routeur, celui-ci déchiffre une couche, jusqu'à ce que le dernier routeur transmette le message en clair au destinataire.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Coding a complex asymmetrical encryption tech, to transfer messages safely. Coding a decryption tech to decode the same messages, and code a server to stock all the keys for encryption/decryption.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">MariaDB</span>
+            <span class="tech-pill">Cryptographie</span>
+          </div>
+          <a href="https://github.com/AkiraValk" target="_blank" class="sae-link">
+            Voir les fichiers
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="sae-card c1c2c4c5">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 3.03</span>
+          <div class="sae-comp-badges">
+            <span class="sae-comp-badge-pill badge-c1">C1 — Administrer</span>
+            <span class="sae-comp-badge-pill badge-c2">C2 — Connecter</span>
+            <span class="sae-comp-badge-pill badge-c4">C4 — Sécuriser</span>
+            <span class="sae-comp-badge-pill badge-c5">C5 — Surveiller</span>
+          </div>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Titre de la SAÉ</div>
+          <p class="sae-desc">Description à remplir.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>To be filled.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">Outil 1</span>
+          </div>
+          <a href="https://github.com/AkiraValk" target="_blank" class="sae-link">
+            Voir les fichiers
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="sae-card c4c5">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 3.04</span>
+          <div class="sae-comp-badges">
+            <span class="sae-comp-badge-pill badge-c4">C4 — Sécuriser</span>
+            <span class="sae-comp-badge-pill badge-c5">C5 — Surveiller</span>
+          </div>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Titre de la SAÉ</div>
+          <p class="sae-desc">Description à remplir.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>To be filled.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">Outil 1</span>
+          </div>
+          <a href="https://github.com/AkiraValk" target="_blank" class="sae-link">
+            Voir les fichiers
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-label">SEMESTRE 4</div>
+
+    <div class="sae-grid">
+
+      <div class="sae-card c4c5">
+        <div class="sae-card-top">
+          <span class="sae-id">SAÉ 4.01</span>
+          <div class="sae-comp-badges">
+            <span class="sae-comp-badge-pill badge-c4">C4 — Sécuriser</span>
+            <span class="sae-comp-badge-pill badge-c5">C5 — Surveiller</span>
+          </div>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">SAÉ à venir Juin/2026</div>
+          <p class="sae-desc">Revenez en juillet 2026 pour découvrir ce projets de fin de deuxieme année.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>Come back in July 2026 to discover this second‑year capstone project.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">X</span>
+          </div>
+          <a href="https://github.com/AkiraValk" target="_blank" class="sae-link">
+            à venir
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="sae-card all">
+        <div class="sae-card-top">
+          <span class="sae-id">PORTFOLIO</span>
+          <div class="sae-comp-badges">
+            <span class="sae-comp-badge-pill badge-c1">C1 - Administrer</span>
+            <span class="sae-comp-badge-pill badge-c2">C2 - Connecter</span>
+            <span class="sae-comp-badge-pill badge-c3">C3 - Programmer</span>
+            <span class="sae-comp-badge-pill badge-c4">C4 - Sécuriser</span>
+            <span class="sae-comp-badge-pill badge-c5">C5 - Surveiller</span>
+          </div>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">Portfolio de compétences BUT</div>
+          <p class="sae-desc">Cette saé m'a permis de réfléchir sur moi même, mes compétences, et mes capacités à présenter mes projets de manière claire à des professionels, ou amateurs.
+          J'ai mettre en oeuvre grâce à ces compétences un site internet me représentant, celui que vous visitez actuellement. Ce projet m'a pris énormément de temps, et je cherche encore aujourd'hui des axes d'amélioration pour celui-ci.
+          </p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">What I learned</div>
+          <p>This project helped me reflect on myself, my skills, and my ability to present my projects clearly, both to professionals and to non‑experts.
+          Using these skills, I built a website that represents me: the one you are currently visiting. This project took me a lot of time, and I am still looking today for ways to improve it.</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">HTML</span>
+            <span class="tech-pill">CSS</span>
+          </div>
+          <a href="index.html" class="sae-link">
+            Voir le portfolio
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="divider"></div>
+    <div class="section-label">SEMESTRE 5</div>
+
+    <div class="sae-grid">
+      
+      <div class="sae-card all">
+        <div class="sae-card-top">
+          <span class="sae-id">à venir !!</span>
+          <div class="sae-comp-badges">
+            <span class="sae-comp-badge-pill badge-c1">C1 - Administrer</span>
+            <span class="sae-comp-badge-pill badge-c2">C2 - Connecter</span>
+            <span class="sae-comp-badge-pill badge-c3">C3 - Programmer</span>
+            <span class="sae-comp-badge-pill badge-c4">C4 - Sécuriser</span>
+            <span class="sae-comp-badge-pill badge-c5">C5 - Surveiller</span>
+          </div>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">à venir !</div>
+          <p class="sae-desc">Revenez l'année prochaine pour découvrir mes projets de troisème année.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">Coming soon !</div>
+          <p>Come back next year to discover my 3rd year projects .</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">X</span>
+          </div>
+          <a href="index.html" class="sae-link">
+            à venir
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+
+
+     <div class="divider"></div>
+    <div class="section-label">SEMESTRE 6</div>
+
+    <div class="sae-grid">
+      
+      <div class="sae-card all">
+        <div class="sae-card-top">
+          <span class="sae-id">à venir !!</span>
+          <div class="sae-comp-badges">
+            <span class="sae-comp-badge-pill badge-c1">C1 - Administrer</span>
+            <span class="sae-comp-badge-pill badge-c2">C2 - Connecter</span>
+            <span class="sae-comp-badge-pill badge-c3">C3 - Programmer</span>
+            <span class="sae-comp-badge-pill badge-c4">C4 - Sécuriser</span>
+            <span class="sae-comp-badge-pill badge-c5">C5 - Surveiller</span>
+          </div>
+        </div>
+        <div class="sae-card-body">
+          <div class="sae-title">à venir !</div>
+          <p class="sae-desc">Revenez l'année prochaine pour découvrir mes projets de troisème année.</p>
+        </div>
+        <div class="sae-en">
+          <div class="sae-en-label">Coming soon !</div>
+          <p>Come back next year to discover my 3rd year projects .</p>
+        </div>
+        <div class="sae-card-footer">
+          <div class="sae-techs">
+            <span class="tech-pill">X</span>
+          </div>
+          <a href="index.html" class="sae-link">
+            à venir
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+   </div> 
+    
+  </div><!-- fin .content -->
+
+  <div style="height:1px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); opacity:.15; margin: 0 5rem; position:relative; z-index:2;"></div>
+
+  <div class="back-section">
+    <a href="but1.html" class="btn">← Retour BUT 1</a>
+    <a href="index.html" class="btn">Accueil</a>
+  </div>
+
+  <footer>
+    <span>© 2025 — Chloé Charon</span>
+    <span style="color:var(--text-dim);">SAÉ — BUT 1</span>
+    <span>v1.0.0</span>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const dot = document.getElementById('cursorDot');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+      dot.style.left    = e.clientX + 'px';
+      dot.style.top     = e.clientY + 'px';
+    });
+  </script>
+</body>
+</html>
