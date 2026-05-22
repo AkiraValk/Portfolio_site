@@ -993,16 +993,18 @@
     
   const toggle = document.getElementById('navToggle');
 const menu   = document.getElementById('navMenu');
-toggle.addEventListener('click', () => {
-  toggle.classList.toggle('open');
-  menu.classList.toggle('open');
-});
-menu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    toggle.classList.remove('open');
-    menu.classList.remove('open');
+if (toggle && menu) {
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    menu.classList.toggle('open');
   });
-});
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+    });
+  });
+}
 </script>
 </body>
 </html>
