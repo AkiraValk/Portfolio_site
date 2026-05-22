@@ -10,6 +10,7 @@
   padding: 4px;
   z-index: 200;
   cursor: pointer;
+  flex-shrink: 0;
 }
 .nav-toggle span {
   display: block;
@@ -21,37 +22,29 @@
 .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-
+ 
+ 
 /* ── TABLET ( < 900px ) ── */
-
+ 
 @media (max-width: 900px) {
-  nav ul {
-    display: none !important;
-  }
-  nav ul.open {
-    display: flex !important;
-  }
-
+ 
   /* Général */
-  body {
-    cursor: auto;
-    font-size: 16px;
-  }
-  .cursor,
-  .cursor-dot { display: none; }
-  .btn { cursor: pointer; }
-
-  /* Nav */
+  body { cursor: auto; font-size: 16px; }
+  .cursor, .cursor-dot { display: none; }
+  .btn, .cv-btn, .sae-link { cursor: pointer; }
+ 
+  /* ── NAV ── */
   nav {
     padding: 1rem 1.5rem;
     flex-wrap: wrap;
     gap: .5rem;
+    align-items: center;
   }
   .nav-toggle { display: flex; }
-
+ 
+  /* Force le masquage du menu même si le style inline dit display:flex */
   nav ul {
-    display: none;
+    display: none !important;
     flex-direction: column;
     width: 100%;
     gap: 0;
@@ -60,17 +53,35 @@
     margin-top: .5rem;
     order: 3;
   }
-  nav ul.open { display: flex; }
+  nav ul.open { display: flex !important; }
+ 
   nav ul li a {
     display: block;
-    padding: .6rem 0;
+    padding: .65rem 0;
     font-size: .8rem;
   }
-
+ 
   .lang-switch,
   .lang-switcher { margin-left: auto; }
-
-  /* Hero */
+ 
+  /* ── SUBNAV (stage.html, projet-integratif.html) ── */
+  .stage-subnav,
+  .proj-subnav {
+    top: 58px;          /* nav plus petite sur mobile */
+    padding: 0 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .stage-subnav::-webkit-scrollbar,
+  .proj-subnav::-webkit-scrollbar { display: none; }
+ 
+  .subnav-item {
+    padding: .75rem .9rem;
+    font-size: .62rem;
+  }
+ 
+  /* ── HERO ── */
   #hero {
     grid-template-columns: 1fr;
     padding: 7rem 2rem 3rem;
@@ -78,32 +89,34 @@
   }
   .hero-visual { display: none; }
   .hero-cta { flex-direction: column; }
-
-  /* About */
+ 
+  /* ── ABOUT ── */
   #about { padding: 4rem 2rem; }
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  /* Compétences */
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+ 
+  /* ── COMPÉTENCES ── */
   #competences { padding: 4rem 2rem; }
   .comp-grid { grid-template-columns: 1fr 1fr; }
-
-  /* Soft skills */
+ 
+  /* ── BUT2 : comp-body 2 colonnes → 1 ── */
+  .comp-body { grid-template-columns: 1fr; }
+  .comp-col { border-right: none; border-bottom: 1px solid var(--border); }
+  .comp-col:last-child { border-bottom: none; }
+ 
+  /* ── SOFT SKILLS ── */
   #softskills { padding: 4rem 2rem; }
   .soft-grid { grid-template-columns: 1fr; }
-
-  /* CV */
+ 
+  /* ── CV ── */
   #cv { padding: 4rem 2rem; }
   .cv-grid { grid-template-columns: 1fr; }
-
-  /* SAE cards */
+ 
+  /* ── SAE cards ── */
   .sae-grid { grid-template-columns: 1fr; gap: 1rem; }
   .content { padding: 2.5rem 1.5rem; }
   .page-header { padding: 7rem 1.5rem 3rem; }
-
-  /* CTA / divider / footer */
+ 
+  /* ── CTA / divider / footer ── */
   #cta { padding: 4rem 2rem; }
   .divider { margin-left: 0; margin-right: 0; }
   footer {
@@ -112,53 +125,61 @@
     gap: .5rem;
     text-align: center;
   }
-
-  /* Back section */
+ 
+  /* ── Back section ── */
   .back-section {
     padding: 2rem 1.5rem 3rem;
     flex-direction: column;
     align-items: stretch;
   }
   .back-section .btn { text-align: center; }
+ 
+  /* ── Projet intégratif : accordion ── */
+  .accordion-header { padding: 1rem 1.2rem; }
+  .accordion-body { padding: 1rem 1.2rem; }
 }
-
-
+ 
+ 
 /* ── MOBILE ( < 600px ) ── */
-
+ 
 @media (max-width: 600px) {
-
+ 
   /* Nav */
   nav { padding: .9rem 1rem; }
   .nav-logo { font-size: .85rem; }
-
+ 
   /* Hero */
   #hero { padding: 6.5rem 1rem 2.5rem; }
   .hero-tag { font-size: .65rem; }
   h1 { font-size: clamp(1.6rem, 8vw, 2.5rem); }
   .hero-subtitle { font-size: .95rem; }
-
-  /* Sections */
+ 
+  /* Sections générales */
   #about,
   #competences,
   #softskills,
   #cv,
   #cta { padding: 3rem 1rem; }
-
+ 
   .comp-grid { grid-template-columns: 1fr; }
-
-  /* Page header (SAE, parcours, etc.) */
+ 
+  /* Page header */
   .page-header { padding: 6rem 1rem 2rem; }
   .page-header h1 { font-size: clamp(1.4rem, 8vw, 2rem); }
   .page-header p { font-size: .92rem; }
-
+ 
   /* Content */
   .content { padding: 2rem 1rem; }
-
+ 
+  /* Subnav encore plus compact */
+  .stage-subnav,
+  .proj-subnav { padding: 0 .5rem; }
+  .subnav-item { padding: .6rem .7rem; font-size: .58rem; letter-spacing: .08em; }
+ 
   /* SAE cards */
   .sae-card-top { padding: 1rem 1rem .8rem; }
   .sae-card-body { padding: 1rem; }
-  .sae-en,
-  .sae-fr { padding: .9rem 1rem; }
+  .sae-en, .sae-fr { padding: .9rem 1rem; }
   .sae-card-footer {
     padding: .8rem 1rem;
     flex-direction: column;
@@ -166,26 +187,31 @@
   }
   .sae-id { font-size: .68rem; padding: .25rem .6rem; }
   .sae-title { font-size: .85rem; }
-  .sae-desc,
-  .sae-en p,
-  .sae-fr p { font-size: .85rem; }
+  .sae-desc, .sae-en p, .sae-fr p { font-size: .85rem; }
   .sae-comp-badge-pill { font-size: .48rem; }
-
+ 
   /* Legend */
   .legende { padding: 1rem; }
   .legende-item { font-size: .58rem; }
-
-  /* Lang switcher */
+ 
+  /* Lang */
   .lang-switcher { gap: .3rem; }
   .lang-btn { font-size: .62rem; padding: .2rem .45rem; }
-
+ 
   /* Footer */
   footer { padding: 1rem; font-size: .6rem; }
-
+ 
   /* Stat cards */
   .stat-value { font-size: 1.5rem; }
-
+ 
   /* CV */
   .cv-actions { flex-direction: column; }
   .cv-btn { text-align: center; }
+ 
+  /* BUT2 comp header */
+  .comp-header { flex-direction: column; gap: .8rem; }
+  .comp-number { font-size: 1.8rem; }
+ 
+  /* Back section */
+  .back-section { padding: 1.5rem 1rem 2.5rem; }
 }
