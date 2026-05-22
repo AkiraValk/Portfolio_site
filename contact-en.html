@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Chloé CHARON</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #050810;
+      --bg2:      #0a0f1e;
+      --panel:    #0d1428;
+      --cyan:     #00f5ff;
+      --cyan-dim: #00b8bf;
+      --magenta:  #ff00aa;
+      --green:    #00ff88;
+      --text:     #c8d8f0;
+      --text-dim: #5a7090;
+      --border:   rgba(0,245,255,0.15);
+      --glow:     0 0 20px rgba(0,245,255,0.3);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      overflow-x: hidden;
+      cursor: none;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cursor {
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+      width: 20px; height: 20px;
+      border: 1px solid var(--cyan); border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width .2s, height .2s, background .2s;
+      mix-blend-mode: screen;
+    }
+    .cursor-dot {
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+      width: 4px; height: 4px; background: var(--cyan); border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px; pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px
+      );
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(5,8,16,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--cyan); letter-spacing: .2em;
+      text-shadow: var(--glow); text-decoration: none;
+    }
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    nav a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--text-dim); text-decoration: none;
+      position: relative; padding-bottom: 4px; transition: color .3s;
+    }
+    nav a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+      background: var(--cyan); transition: width .3s;
+    }
+    nav a:hover { color: var(--cyan); }
+    nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--cyan); }
+    nav a.active::after { width: 100%; }
+
+    /* MAIN */
+    main {
+      position: relative; z-index: 2;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .contact-wrap {
+      width: 100%;
+      max-width: 600px;
+      animation: fadeInUp .7s ease both;
+    }
+
+    /* TAG */
+    .tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .7rem; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--magenta); margin-bottom: 1rem;
+    }
+
+    /* TITRE */
+    .contact-wrap h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900; color: #fff;
+      text-shadow: 0 0 40px rgba(0,245,255,0.15);
+      margin-bottom: .6rem;
+    }
+    .contact-wrap h1 span { color: var(--cyan); }
+
+    .contact-wrap .subtitle {
+      font-size: 1rem; color: var(--text-dim);
+      line-height: 1.7; margin-bottom: 3rem;
+    }
+
+    /* CARTES CONTACT */
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 1.4rem 1.8rem;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 1.5rem;
+      text-decoration: none;
+      position: relative; overflow: hidden;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+      cursor: none;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+      transition: background .3s;
+    }
+    .contact-card:nth-child(1)::before { background: var(--cyan); }
+    .contact-card:nth-child(2)::before { background: var(--magenta); }
+    .contact-card:nth-child(3)::before { background: var(--green); }
+
+    .contact-card:hover {
+      transform: translateX(4px);
+      box-shadow: var(--glow);
+    }
+    .contact-card:nth-child(1):hover { border-color: rgba(0,245,255,0.4); }
+    .contact-card:nth-child(2):hover { border-color: rgba(255,0,170,0.4); box-shadow: 0 0 20px rgba(255,0,170,0.2); }
+    .contact-card:nth-child(3):hover { border-color: rgba(0,255,136,0.4); box-shadow: 0 0 20px rgba(0,255,136,0.2); }
+
+    .contact-card-left { display: flex; flex-direction: column; gap: .3rem; }
+
+    .contact-card:nth-child(4)::before { background: var(--yellow, #f0c060); }
+    .contact-card:nth-child(4):hover { border-color: rgba(240,192,96,0.4); box-shadow: 0 0 20px rgba(240,192,96,0.2); }
+    .contact-card:nth-child(4) .contact-type { color: var(--yellow, #f0c060); }
+    .contact-card:nth-child(4):hover .contact-arrow { color: var(--yellow, #f0c060); }
+
+    .contact-type {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .contact-card:nth-child(1) .contact-type { color: var(--cyan); }
+    .contact-card:nth-child(2) .contact-type { color: var(--magenta); }
+    .contact-card:nth-child(3) .contact-type { color: var(--green); }
+
+    .contact-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: .9rem; font-weight: 700;
+      color: #fff; letter-spacing: .04em;
+    }
+
+    .contact-arrow {
+      color: var(--text-dim);
+      transition: color .3s, transform .3s;
+      flex-shrink: 0;
+    }
+    .contact-card:hover .contact-arrow {
+      transform: translateX(4px);
+    }
+    .contact-card:nth-child(1):hover .contact-arrow { color: var(--cyan); }
+    .contact-card:nth-child(2):hover .contact-arrow { color: var(--magenta); }
+    .contact-card:nth-child(3):hover .contact-arrow { color: var(--green); }
+
+    /* DISPO BADGE */
+    .dispo {
+      display: flex; align-items: center; gap: .8rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--text-dim);
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .dispo-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .4; }
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative; z-index: 2;
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .65rem; letter-spacing: .15em; color: var(--text-dim);
+    }
+    footer span { color: var(--cyan); }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { gap: 1.2rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: .5rem; text-align: center; }
+    }
+
+    .lang-switch {
+      display: flex; align-items: center; gap: .5rem; margin-left: 1.5rem;
+    }
+    .lang-flag { display: flex; align-items: center; opacity: .45; transition: opacity .2s; cursor: none; }
+    .lang-flag:hover, .lang-flag.lang-active { opacity: 1; }
+    .lang-flag img { display: block; border: 1px solid rgba(0,245,255,0.2); }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <nav>
+    <a href="index-en.html" class="nav-logo">PORTFOLIO</a>
+    <ul>
+      <li><a href="index-en.html#about">About</a></li>
+      <li><a href="parcours-en.html">Career</a></li>
+      <li><a href="but1-en.html">BUT 1</a></li>
+      <li><a href="but2-en.html">BUT 2</a></li>
+      <li><a href="projet-integratif-en.html">Capstone</a></li>
+      <li><a href="stage-en.html">Internship</a></li>
+      <li><a href="sae-but1-en.html">SAE-BUT</a></li>
+      <li><a href="contact-en.html" class="active">Contact</a></li>
+    </ul>
+    <div class="lang-switch">
+      <a href="contact-en.html" class="lang-flag  lang-active" title="Français">
+        <img src="assets/flag-fr.png" alt="FR" width="22" height="16">
+      </a>
+      <a href="contact-en.html" class="lang-flag  lang-active" title="English">
+        <img src="assets/flag-en.png" alt="EN" width="22" height="16">
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="contact-wrap">
+
+      <div class="tag">// Get in touch</div>
+      <h1>Let's get in <span>touch</span></h1>
+      <p class="subtitle">
+        Studying B.U.T. Networks &amp; Cybersecurity at IUT de Colmar.<br>
+        Available for an internship from March 2027.
+      </p>
+
+      <div class="contact-cards">
+
+        <a href="mailto:chloe@charon.org" class="contact-card">
+          <div class="contact-card-left">
+            <span class="contact-type">Email</span>
+            <span class="contact-value">chloe@charon.org</span>
+          </div>
+          <svg class="contact-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+
+        <a href="https://www.linkedin.com/in/chloecharonprofile" target="_blank" class="contact-card">
+          <div class="contact-card-left">
+            <span class="contact-type">LinkedIn</span>
+            <span class="contact-value">Chloé Charon</span>
+          </div>
+          <svg class="contact-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+
+        <a href="https://github.com/AkiraValk" target="_blank" class="contact-card">
+          <div class="contact-card-left">
+            <span class="contact-type">GitHub</span>
+            <span class="contact-value">AkiraValk</span>
+          </div>
+          <svg class="contact-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+
+        <a href="tel:+33781377432" class="contact-card">
+          <div class="contact-card-left">
+            <span class="contact-type">Téléphone</span>
+            <span class="contact-value">(+33) 07 81 37 74 32</span>
+          </div>
+          <svg class="contact-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+
+      </div>
+
+      <div class="dispo">
+        <div class="dispo-dot"></div>
+        Available for internship — March 2nd to June 18th, 2027
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <span>© 2025 — Chloé Charon</span>
+    <span style="color:var(--text-dim);">Contact</span>
+    <span>v1.0.0</span>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const dot = document.getElementById('cursorDot');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+      dot.style.left    = e.clientX + 'px';
+      dot.style.top     = e.clientY + 'px';
+    });
+  </script>
+</body>
+</html>
