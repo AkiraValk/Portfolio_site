@@ -26,6 +26,12 @@
 /* ── TABLET ( < 900px ) ── */
 
 @media (max-width: 900px) {
+  nav ul {
+    display: none !important;
+  }
+  nav ul.open {
+    display: flex !important;
+  }
 
   /* Général */
   body {
