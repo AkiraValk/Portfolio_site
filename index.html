@@ -581,6 +581,13 @@
       #softskills { padding: 4rem 2rem; }
       .soft-grid { grid-template-columns: 1fr; }
     }
+
+    .lang-switch {
+      display: flex; align-items: center; gap: .5rem; margin-left: 1.5rem;
+    }
+    .lang-flag { display: flex; align-items: center; opacity: .45; transition: opacity .2s; cursor: none; }
+    .lang-flag:hover, .lang-flag.lang-active { opacity: 1; }
+    .lang-flag img { display: block; border: 1px solid rgba(0,245,255,0.2); }
   </style>
 </head>
 <body>
@@ -600,6 +607,14 @@
       <li><a href="sae-but1.html">Sae-BUT</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+    <div class="lang-switch">
+      <a href="index.html" class="lang-flag  lang-active" title="Français">
+        <img src="assets/flag-fr.png" alt="FR" width="22" height="16">
+      </a>
+      <a href="index-en.html" class="lang-flag" title="English">
+        <img src="assets/flag-en.png" alt="EN" width="22" height="16">
+      </a>
+    </div>
   </nav>
 
   <section id="hero">
@@ -821,7 +836,7 @@
 
   <div class="divider"></div>
 
-  <!-- SOFT SKILLS -->
+  
   <section id="softskills">
     <div class="section-header">
       <span class="section-num">03 //</span>
@@ -830,7 +845,7 @@
     </div>
     <div class="soft-grid">
 
-      <!-- ANGLAIS -->
+      
       <div class="soft-card">
         <div class="soft-card-header">
           <div class="soft-name">Anglais</div>
@@ -842,7 +857,7 @@
         </ul>
       </div>
 
-      <!-- COMMUNICATION -->
+      
       <div class="soft-card">
         <div class="soft-card-header">
           <div class="soft-name">Communication</div>
@@ -854,7 +869,7 @@
         </ul>
       </div>
 
-      <!-- GESTION DE PROJET -->
+      
       <div class="soft-card">
         <div class="soft-card-header">
           <div class="soft-name">Gestion de projet</div>
@@ -916,7 +931,7 @@
     </div>
   </section>
 
-  <!-- LIGHTBOX PDF -->
+  
   <div class="cv-lightbox" id="cvLightbox">
     <div class="cv-lightbox-inner">
       <button class="cv-lightbox-close" onclick="closeLightbox()">[ FERMER × ]</button>
@@ -932,7 +947,7 @@
     <a href="parcours.html" class="btn">Explorer ma formation →</a>
   </section>
 
-<!-- FOOTER -->
+
   <footer>
     <span>© 2025 — Chloé Charon</span>
     <span style="color:var(--text-dim);">Construit avec du code + du café et énormément de temps</span>

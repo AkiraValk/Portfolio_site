@@ -568,6 +568,13 @@
     }
     .but1-btn:hover { color: var(--bg); }
     .but1-btn:hover::before { transform: translateX(0); }
+
+    .lang-switch {
+      display: flex; align-items: center; gap: .5rem; margin-left: 1.5rem;
+    }
+    .lang-flag { display: flex; align-items: center; opacity: .45; transition: opacity .2s; cursor: none; }
+    .lang-flag:hover, .lang-flag.lang-active { opacity: 1; }
+    .lang-flag img { display: block; border: 1px solid rgba(0,245,255,0.2); }
   </style>
 </head>
 <body>
@@ -587,6 +594,14 @@
       <li><a href="sae-but1.html">Sae-BUT</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+    <div class="lang-switch">
+      <a href="but2.html" class="lang-flag  lang-active" title="Français">
+        <img src="assets/flag-fr.png" alt="FR" width="22" height="16">
+      </a>
+      <a href="but2-en.html" class="lang-flag" title="English">
+        <img src="assets/flag-en.png" alt="EN" width="22" height="16">
+      </a>
+    </div>
   </nav>
 
   <div class="but2-subnav">
@@ -612,7 +627,7 @@
 
   <div class="content">
 
-    <!-- ══════════════════ C4 ══════════════════ -->
+    
     <div id="c4" class="section-label" style="margin-top: 0;">COMPÉTENCE 4 — SÉCURISER</div>
 
     <div class="competence-block">
@@ -654,7 +669,7 @@
       </div>
     </div>
 
-    <!-- ══ RÉFLEXIVITÉ C4 ══ -->
+    
     <div class="reflexion-bloc">
       <div class="reflexion-bloc-label">Analyse réflexive</div>
       <div class="reflexion-grid">
@@ -697,7 +712,7 @@
         <p class="projet-desc">Réalisation d'une maquette avec 2 sites distants communiquant via <strong>BGP</strong>, haute disponibilité, 4 services (DNS, DHCP, Web, mail) et mise en place d'un <strong>Active Directory</strong> avec la hiérarchie des deux sites.</p>
         <div class="projet-footer">
           <div class="projet-techs"><span class="tech-pill">BGP</span><span class="tech-pill">VRRP</span><span class="tech-pill">AD</span><span class="tech-pill">SMTP</span><span class="tech-pill">IMAP</span></div>
-          <a href="https://github.com/AkiraValk/Portfolio_site/tree/main/assets/BUT2/SAE_Cyber3.03" target="_blank" class="projet-link">
+          <a href="https://github.com/AkiraValk/portfolio/tree/main/assets/BUT2/SAE_Cyber3.03" target="_blank" class="projet-link">
             Voir le projet <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -717,7 +732,7 @@
 
     <div class="divider" style="margin: 0 0 3rem 0;"></div>
 
-    <!-- ══════════════════ C5 ══════════════════ -->
+    
     <div id="c5" class="section-label">COMPÉTENCE 5 — SURVEILLER</div>
 
     <div class="competence-block">
@@ -757,7 +772,7 @@
       </div>
     </div>
 
-    <!-- ══ RÉFLEXIVITÉ C5 ══ -->
+    
     <div class="reflexion-bloc">
       <div class="reflexion-bloc-label">Analyse réflexive</div>
       <div class="reflexion-grid">
@@ -800,7 +815,7 @@
         <p class="projet-desc">Visualisation des différentes failles dans les services LAN (serveur, DNS, DHCP), les moyens de les exploiter et les solutions pour les éviter dans un futur réseau.</p>
         <div class="projet-footer">
           <div class="projet-techs"><span class="tech-pill">DHCP</span><span class="tech-pill">VLAN / VACL</span><span class="tech-pill">DNS</span><span class="tech-pill">ARP</span></div>
-          <a href="https://github.com/AkiraValk/Portfolio_site/tree/main/assets/BUT2/Cyber_SRL" target="_blank" class="projet-link">
+          <a href="https://github.com/AkiraValk/portfolio/tree/main/assets/BUT2/Cyber_SRL" target="_blank" class="projet-link">
             Voir le projet <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -811,7 +826,7 @@
         <p class="projet-desc">Exploitation de failles réseau et <strong>Active Directory</strong> avec Kali Linux contre une machine Windows non sécurisée. Infiltration et récupération de données sensibles via Metasploit et Kerberoasting.</p>
         <div class="projet-footer">
           <div class="projet-techs"><span class="tech-pill">Metasploit</span><span class="tech-pill">Kerberoasting</span><span class="tech-pill">Kali Linux</span></div>
-          <a href="https://github.com/AkiraValk/Portfolio_site/tree/main/assets/BUT2/Cyber_SSR" target="_blank" class="projet-link">
+          <a href="https://github.com/AkiraValk/portfolio/tree/main/assets/BUT2/Cyber_SSR" target="_blank" class="projet-link">
             Voir les rapports <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -820,7 +835,7 @@
 
     <div class="divider" style="margin: 0 0 3rem 0;"></div>
 
-    <!-- ══ LIEN BUT 1 ══ -->
+    
     <div id="but1-link" class="section-label">COMPÉTENCES BUT 1</div>
 
     <div class="but1-link-card">
@@ -834,7 +849,7 @@
       </a>
     </div>
 
-  </div><!-- fin .content -->
+  </div>
 
   <div class="divider"></div>
 

@@ -352,6 +352,13 @@
       max-height: 300px;
       object-fit: contain;
     }
+
+    .lang-switch {
+      display: flex; align-items: center; gap: .5rem; margin-left: 1.5rem;
+    }
+    .lang-flag { display: flex; align-items: center; opacity: .45; transition: opacity .2s; cursor: none; }
+    .lang-flag:hover, .lang-flag.lang-active { opacity: 1; }
+    .lang-flag img { display: block; border: 1px solid rgba(0,245,255,0.2); }
   </style>
 </head>
 <body>
@@ -371,9 +378,17 @@
       <li><a href="sae-but1.html">Sae-BUT</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+    <div class="lang-switch">
+      <a href="projet-integratif.html" class="lang-flag  lang-active" title="Français">
+        <img src="assets/flag-fr.png" alt="FR" width="22" height="16">
+      </a>
+      <a href="projet-integratif-en.html" class="lang-flag" title="English">
+        <img src="assets/flag-en.png" alt="EN" width="22" height="16">
+      </a>
+    </div>
   </nav>
 
-  <!-- SUBNAV -->
+  
   <div class="proj-subnav">
     <a href="#intro"    class="subnav-item active" data-target="intro">Introduction</a>
     <a href="#reseau"   class="subnav-item" data-target="reseau">Réseau</a>
@@ -383,7 +398,7 @@
     <a href="#conclusion" class="subnav-item" data-target="conclusion">Conclusion</a>
   </div>
 
-  <!-- EN-TÊTE -->
+  
   <div class="page-header">
     <div class="tag">// SAÉ 2.04 — Projet de fin d'année</div>
     <h1>Projet <span>Intégratif</span></h1>
@@ -404,7 +419,7 @@
 
   <div class="content">
 
-    <!-- ══════════════════ INTRODUCTION ══════════════════ -->
+    
     <div id="intro" class="section-label">Introduction au projet</div>
 
     <div class="text-block">
@@ -417,7 +432,7 @@
 
     <div class="divider"></div>
 
-    <!-- ══════════════════ RÉSEAU ══════════════════ -->
+    
     <div id="reseau" class="section-label">Réseau</div>
 
     <div class="text-block">
@@ -435,14 +450,14 @@
 
     <div class="divider"></div>
 
-    <!-- ══════════════════ TÉLÉPHONIE ══════════════════ -->
+    
     <div id="telephonie" class="section-label">Téléphonie</div>
 
     <div class="text-block">
       <p>Pour la partie téléphonie, j'ai intégré à deux clients Windows faisant partie du <strong>VLAN User</strong> le logiciel <strong>Linphone</strong> avec deux comptes pour que les deux machines puissent dialoguer. J'ai attribué une adresse IP à un téléphone fixe via <strong>DHCP</strong> dans le VLAN Voix pour isoler le trafic téléphonique du reste du réseau. Ce téléphone s'est aussi vu attribuer un compte Linphone pour le dialogue. Cette partie a été la plus rapide à réaliser.</p>
     </div>
 
-    <!-- IMAGE 2 — Schéma téléphonie -->
+    
     <div class="img-block">
       <div class="img-label">Schéma de la partie Téléphonie</div>
       <div class="img-wrap">
@@ -452,7 +467,7 @@
 
     <div class="divider"></div>
 
-    <!-- ══════════════════ MQTT ══════════════════ -->
+    
     <div id="mqtt" class="section-label">Collecte MQTT</div>
 
     <div class="text-block">
@@ -461,13 +476,13 @@
       <p>J'ai aussi prévu la gestion des déconnexions : si la base est indisponible, les messages sont mis en file d'attente et réinjectés dès que la connexion revient, ce qui garantit qu'<strong>aucune donnée n'est perdue</strong>. Ce système permet de suivre l'état des capteurs en continu, même en cas de coupure réseau ou de maintenance sur la base.</p>
     </div>
 
-    <!-- LIEN GIT — Programme MQTT -->
+    
     <div class="git-block">
       <div class="git-block-text">
         <h4>MQTT — Programme de collecte</h4>
         <p>// Script Python · Paho MQTT · Insertion MariaDB · Gestion file d'attente</p>
       </div>
-      <!-- Remplace le href par le lien direct vers le fichier dans ton repo -->
+      
       <a href="assets/PI_MQTT/CollecteMQTT.py" class="git-btn" download>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -480,7 +495,7 @@
 
     <div class="divider"></div>
 
-    <!-- ══════════════════ SERVICE WEB ══════════════════ -->
+    
     <div id="web" class="section-label">Service Web &amp; MariaDB</div>
 
     <div class="text-block">
@@ -489,7 +504,7 @@
       <p>L'application permet aussi de modifier les informations sur les capteurs et d'administrer les données facilement. J'ai configuré <strong>Nginx et Gunicorn</strong> pour servir l'application à la racine du domaine, avec gestion des fichiers statiques et sécurité des accès. Toute l'intégration entre la collecte MQTT, la base et le site web est <strong>automatisée</strong>, ce qui rend l'ensemble fluide et simple à utiliser.</p>
     </div>
 
-    <!-- IMAGE 3 — Contenu des tables -->
+    
     <div class="img-block">
       <div class="img-label">Contenu des tables de la base de données Maison</div>
        <div class="img-wrap img-small">
@@ -497,7 +512,7 @@
       </div><img src="assets/Images_PI/Contenu_TMDB.png" alt="Schéma infrastructure téléphonique"></div>
     </div>
 
-    <!-- IMAGE 4 — Tables MariaDB -->
+    
     <div class="img-block">
       <div class="img-label">Tables dans la base de données Maison sur MariaDB</div>
        <div class="img-wrap img-small">
@@ -507,7 +522,7 @@
 
     <div class="divider"></div>
 
-    <!-- ══════════════════ CONCLUSION ══════════════════ -->
+    
     <div id="conclusion" class="section-label">Conclusion</div>
 
     <div class="conclusion-block">
@@ -518,7 +533,7 @@
       <p>Ce projet m'a donné une <strong>vision globale et concrète des métiers du réseau et des télécommunications</strong>, et m'a permis de me préparer à aller plus loin dans ce domaine.</p>
     </div>
 
-  </div><!-- fin .content -->
+  </div>
 
   <div style="height:1px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); opacity:.15; margin: 0 5rem; position:relative; z-index:2;"></div>
 

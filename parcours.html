@@ -396,6 +396,13 @@
       .page-header, .content, .back-section, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
       .back-section { flex-direction: column; gap: 1rem; }
     }
+
+    .lang-switch {
+      display: flex; align-items: center; gap: .5rem; margin-left: 1.5rem;
+    }
+    .lang-flag { display: flex; align-items: center; opacity: .45; transition: opacity .2s; cursor: none; }
+    .lang-flag:hover, .lang-flag.lang-active { opacity: 1; }
+    .lang-flag img { display: block; border: 1px solid rgba(0,245,255,0.2); }
   </style>
 </head>
 <body>
@@ -415,6 +422,14 @@
       <li><a href="sae-but1.html">Sae-BUT</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+    <div class="lang-switch">
+      <a href="parcours.html" class="lang-flag  lang-active" title="Français">
+        <img src="assets/flag-fr.png" alt="FR" width="22" height="16">
+      </a>
+      <a href="parcours-en.html" class="lang-flag" title="English">
+        <img src="assets/flag-en.png" alt="EN" width="22" height="16">
+      </a>
+    </div>
   </nav>
 
   <div class="page-header">
@@ -423,7 +438,7 @@
     <p>Mon cheminement dans le monde du numérique — formations, projets, et étapes clés qui ont forgé mon profil.</p>
   </div>
 
-  <!-- APPRENTISSAGES CRITIQUES -->
+  
   <div class="content">
     <div class="section-label" style="margin-top: 4rem;">APPRENTISSAGES CRITIQUES — BUT R&amp;T</div>
     <div class="but-grid">
@@ -460,7 +475,7 @@
     </div>
   </div>
 
-  <!-- FORMATION -->
+  
   <div class="content">
     <div class="section-label">FORMATIONS</div>
     <div class="timeline">
@@ -506,14 +521,14 @@
     </div>
   </div>
 
-  <!-- ANALYSE RÉFLECTIVE -->
+  
   <div class="content">
     <div class="section-label">ANALYSE RÉFLECTIVE</div>
 
-    <!-- Grille réussites / difficultés -->
+    
     <div class="reflexion-grid" style="margin-bottom:1.5rem;">
 
-      <!-- Ce que j'ai bien réussi -->
+      
       <div class="reflexion-card">
         <div class="reflexion-card-label">// réussites</div>
         <h4>Ce que j'ai bien réussi</h4>
@@ -542,7 +557,7 @@
         </ul>
       </div>
 
-      <!-- Ce que j'ai moins bien réussi -->
+      
       <div class="reflexion-card">
         <div class="reflexion-card-label">// difficultés</div>
         <h4>Ce que j'ai moins bien réussi</h4>
@@ -572,7 +587,7 @@
       </div>
     </div>
 
-    <!-- Grille 2x2 pour les 4 thèmes restants -->
+    
     <div class="reflexion-quad">
 
       <div class="reflexion-card-full">
@@ -610,7 +625,7 @@
     </div>
   </div>
 
-  <!-- RETOUR / CONTACT -->
+  
   <div class="back-section">
     <a href="index.html" class="btn">← Retour à l'accueil</a>
     <a href="mailto:ton@email.fr" class="btn">Me contacter</a>

@@ -545,41 +545,6 @@
     .apprentissage-bloc.net p strong { color: var(--cyan); font-weight: 500; }
     .apprentissage-bloc.sys p strong { color: var(--yellow); font-weight: 500; }
 
-    /* ── LEÇON CLÉ ── */
-    .lecon-cle {
-      background: var(--panel);
-      border: 1px solid rgba(240,192,96,0.3);
-      border-left: 4px solid var(--yellow);
-      padding: 2.5rem 3rem;
-      margin-bottom: 2rem;
-      position: relative; overflow: hidden;
-      text-align: center;
-    }
-    .lecon-cle::after {
-      content: '';
-      position: absolute; top: 0; right: 0;
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(240,192,96,0.05), transparent 70%);
-      pointer-events: none;
-    }
-    .lecon-cle-label {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: .6rem; letter-spacing: .3em; text-transform: uppercase;
-      color: var(--yellow); margin-bottom: 1.2rem;
-    }
-    .lecon-cle-question {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      font-weight: 900; color: #fff;
-      letter-spacing: .04em; line-height: 1.4;
-      margin-bottom: 1.2rem;
-      text-shadow: 0 0 30px rgba(240,192,96,0.2);
-    }
-    .lecon-cle-text {
-      font-size: 1rem; line-height: 1.8;
-      color: var(--text-dim); max-width: 600px; margin: 0 auto;
-    }
-
     /* ── RAPPORT ── */
     .rapport-card {
       background: var(--panel);
@@ -774,6 +739,13 @@
       .competences-duo, .apprentissage-grid, .bilan-duo { grid-template-columns: 1fr; }
       .back-section { flex-direction: column; }
     }
+
+    .lang-switch {
+      display: flex; align-items: center; gap: .5rem; margin-left: 1.5rem;
+    }
+    .lang-flag { display: flex; align-items: center; opacity: .45; transition: opacity .2s; cursor: none; }
+    .lang-flag:hover, .lang-flag.lang-active { opacity: 1; }
+    .lang-flag img { display: block; border: 1px solid rgba(0,245,255,0.2); }
   </style>
 </head>
 <body>
@@ -793,6 +765,14 @@
       <li><a href="sae-but1.html">Sae-BUT</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+    <div class="lang-switch">
+      <a href="stage.html" class="lang-flag  lang-active" title="Français">
+        <img src="assets/flag-fr.png" alt="FR" width="22" height="16">
+      </a>
+      <a href="stage-en.html" class="lang-flag" title="English">
+        <img src="assets/flag-en.png" alt="EN" width="22" height="16">
+      </a>
+    </div>
   </nav>
 
   <div class="stage-subnav">
@@ -822,9 +802,10 @@
 
   <div class="content">
 
-    <!-- ══════════ ENTREPRISE ══════════ -->
+    
     <div id="entreprise" class="section-label">L'entreprise</div>
 
+    
     <div class="entreprise-hero">
       <div class="entreprise-card">
         <div class="entreprise-grid">
@@ -865,12 +846,14 @@
         </div>
       </div>
 
+      
       <div class="logo-panel">
         <img src="assets/Insigne_de_la_brigade_de_renseignement_et_cyber-%C3%A9lectronique.png" alt="Insigne BRCE">
         <div class="logo-panel-label">Insigne de la BRCE</div>
       </div>
     </div>
 
+    
     <div class="text-block">
       <p>
         Héritière du commandement du renseignement des forces terrestres, la brigade de renseignement et cyber-électronique a été créée en 2024 et son état-major est stationné à la caserne Stirn à Strasbourg. Dans le cadre de la transformation de l'armée de Terre de combat, la brigade de renseignement et cyber-électronique (BRCE) est subordonnée au commandement des actions dans la profondeur et du renseignement (CAPR).
@@ -882,11 +865,12 @@
         * Le centre de formation initiale des militaires du rang du renseignement<br>
         * Le 151e régiment d'infanterie<br>
         * La 785e compagnie de guerre électronique<br><br>
-        La brigade est formée et entraînée pour répondre au contrat opérationnel de l'armée de Terre. Elle possède des capacités de recherche spécialisées dans le renseignement d'origine humaine (2e régiment de Hussards) et électromagnétique/cyber (44e RT, 54e RT, 151e RI, et 785e CGE).<br><br>
+        La brigade est formée et entraînée pour répondre au contrat opérationnel de l'armée de Terre. Elle possède des capacités de recherche spécialisées dans le renseignement d'origine humaine (2e régiment de Hussards) et électromagnétique/cyber (44e RT, 54e RT, et 785e CGE).<br><br>
         Le BSIC a pour mission principale de concevoir et de fournir les systèmes d'information et de communication à l'état-major de la BRCE lors de son déploiement. Il a également une mission permanente visant à assurer son fonctionnement au quartier.
       </p>
     </div>
 
+    
     <div class="accordion" id="accordion-insigne">
       <button class="accordion-trigger" onclick="toggleAccordion('accordion-insigne')">
         Signification de l'insigne
@@ -921,7 +905,7 @@
 
     <div class="divider"></div>
 
-    <!-- ══════════ MISSIONS ══════════ -->
+    
     <div id="missions" class="section-label">Missions réalisées</div>
 
     <div class="mission-principale">
@@ -930,11 +914,13 @@
       <p class="mission-principale-text">Déployer un réseau tactique comprenant le raccordement de sites distants et de clients mobiles par VPN.</p>
     </div>
 
+    
     <div class="schema-block">
       <div class="schema-block-header">
         <span class="schema-block-header-label">Schéma de topologie réseau</span>
       </div>
       <div class="schema-img-zone">
+        
         <div class="schema-img-placeholder-text">
           Insère ici ton schéma de topologie<br>
           <code style="font-size:.6rem; opacity:.5; margin-top:.5rem; display:block;">&lt;img src="assets/schema-topologie.png" alt="Schéma de topologie réseau"&gt;</code>
@@ -945,6 +931,7 @@
       </div>
     </div>
 
+    
     <div class="missions-timeline">
       <div class="timeline-mission">
         <div class="timeline-dot"></div>
@@ -982,7 +969,7 @@
 
     <div class="divider"></div>
 
-    <!-- ══════════ COMPÉTENCES ══════════ -->
+    
     <div id="competences" class="section-label">Compétences acquises</div>
 
     <div class="text-block">
@@ -1018,7 +1005,7 @@
 
     <div class="divider"></div>
 
-    <!-- ══════════ CE QUE J'AI APPRIS ══════════ -->
+    
     <div id="apprentissages" class="section-label">Ce que j'ai appris</div>
 
     <div class="apprentissage-grid">
@@ -1032,23 +1019,17 @@
       </div>
       <div class="apprentissage-bloc sys">
         <div class="apprentissage-bloc-label">Système</div>
-        <h4>Nouveaux acquis en système</h4>
-        <p>En système, j'ai pu travailler sur différentes versions de l'Operating System <strong>Windows Server</strong>. J'ai appris à mettre en place un <strong>serveur physique</strong>, pouvoir le booter sur Windows Server, gérer tous les problèmes au démarrage,
-        partitionner les disques en fonction des services demandés. J'ai pu apprendre à utiliser l'hyperviseur <strong>Hyper-V</strong>, étant très différent de celui que j'utilise très souvent : <strong>VirtualBox</strong>.
-        J'ai appris à monter des <strong>serveurs virtuels</strong>, à me servir du <strong>gestionnaire de serveur Windows,</strong> installer de nombreux services en suivant des documentations et avec mes propres expériences, ainsi que mettre en place la communication des serveurs à travers un <strong>Active Directory</strong> (élément indispensable dans les grandes entreprises).
-        </p>
+      <h4>Nouveaux acquis en système</h4>
+      <p>En système, j'ai pu travailler sur différentes versions de l'Operating System <strong>Windows Server</strong>. J'ai appris à mettre en place un <strong>serveur physique</strong>, pouvoir le booter sur Windows Server, gérer tous les problèmes au démarrage,
+      partitionner les disques en fonction des services demandés. J'ai pu apprendre à utiliser l'hyperviseur <strong>Hyper-V</strong>, étant très différent de celui que j'utilise très souvent : <strong>VirtualBox</strong>.
+      J'ai appris à monter des <strong>serveurs virtuels</strong>, à me servir du <strong>gestionnaire de serveur Windows,</strong> installer de nombreux services en suivant des documentations et avec mes propres expériences, ainsi que mettre en place la communication des serveurs à travers un <strong>Active Directory </strong>(élément indispensable dans les grandes entreprises).
+      </p>
       </div>
-    </div>
-
-    <div class="lecon-cle">
-      <div class="lecon-cle-label">// Leçon clé</div>
-      <p class="lecon-cle-question">"Quelles sont les attentes du client ?"</p>
-      <p class="lecon-cle-text">La question la plus importante que j'ai apprise lors de ce stage, et qui va me suivre lors de chaque projet — fondamentale pour la compréhension de la demande et des besoins, afin de mettre en place le projet le plus précis et satisfaisant possible.</p>
     </div>
 
     <div class="divider"></div>
 
-    <!-- ══════════ RAPPORT ══════════ -->
+    
     <div id="rapport" class="section-label">Rapport de stage</div>
 
     <div class="rapport-card">
@@ -1068,7 +1049,7 @@
 
     <div class="divider"></div>
 
-    <!-- ══════════ BILAN ══════════ -->
+    
     <div id="bilan" class="section-label">Bilan & retour d'expérience</div>
 
     <div class="bilan-duo">
@@ -1091,7 +1072,7 @@
 
     <div class="devise-bloc">
       <span class="devise-bloc-label">// Devise</span>
-      <p>« Par Saint-Raphaël, vive le renseignement et par Saint-Gabriel, vive les transmissions !»</p>
+      <p>« Par Saint-Raphaël, vive le renseignement ! »</p>
     </div>
 
   </div>
