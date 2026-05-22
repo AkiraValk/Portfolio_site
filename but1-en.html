@@ -530,7 +530,12 @@
 
   <nav>
     <a href="index-en.html" class="nav-logo">PORTFOLIO</a>
-    <ul>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    
+    <ul id="navMenu">
       <li><a href="index-en.html#about">About</a></li>
       <li><a href="parcours-en.html">Career</a></li>
       <li><a href="but1-en.html" class="active">BUT 1</a></li>
@@ -971,6 +976,19 @@
         item.classList.toggle('active', item.dataset.target === current);
       });
     });
+
+    const toggle = document.getElementById('navToggle');
+    const menu   = document.getElementById('navMenu');
+    toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    menu.classList.remove('open');
+    });
+  });
   </script>
 </body>
 </html>
