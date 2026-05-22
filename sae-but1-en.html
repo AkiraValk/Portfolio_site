@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="responsive.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SAÉ BUT — Chloé CHARON</title>
@@ -396,7 +397,10 @@
 
   <nav>
     <a href="index-en.html" class="nav-logo">PORTFOLIO</a>
-    <ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+    </button>
+  <ul id="navMenu">
       <li><a href="index-en.html#about">About</a></li>
       <li><a href="parcours-en.html">Career</a></li>
       <li><a href="but1-en.html">BUT 1</a></li>
@@ -1070,6 +1074,18 @@
       dot.style.left    = e.clientX + 'px';
       dot.style.top     = e.clientY + 'px';
     });
+      const toggle = document.getElementById('navToggle');
+const menu   = document.getElementById('navMenu');
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  menu.classList.toggle('open');
+});
+menu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    menu.classList.remove('open');
+  });
+});
   </script>
 </body>
 </html>
