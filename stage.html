@@ -67,7 +67,6 @@
       );
     }
 
-    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
@@ -98,7 +97,7 @@
     nav a.active { color: var(--cyan); }
     nav a.active::after { width: 100%; }
 
-    /* ── SUBNAV ── */
+
     .stage-subnav {
       position: sticky; top: 65px; z-index: 90;
       display: flex; gap: 0;
@@ -121,7 +120,7 @@
     .subnav-item:hover { color: var(--cyan); }
     .subnav-item.active { color: var(--cyan); border-bottom-color: var(--cyan); }
 
-    /* ── PAGE HEADER ── */
+
     .page-header {
       position: relative; z-index: 2;
       padding: 9rem 5rem 4rem;
@@ -173,7 +172,6 @@
     }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
 
-    /* ── LAYOUT ── */
     .content {
       position: relative; z-index: 2;
       max-width: 1000px; margin: 0 auto;
@@ -197,7 +195,6 @@
       opacity: .15; margin: 2.5rem 0;
     }
 
-    /* ── FICHE ENTREPRISE ASYMÉTRIQUE ── */
     .entreprise-hero {
       display: grid;
       grid-template-columns: 1fr 220px;
@@ -250,7 +247,6 @@
       color: var(--cyan); letter-spacing: .04em;
     }
 
-    /* Logo panneau latéral */
     .logo-panel {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -276,7 +272,6 @@
       color: var(--text-dim); text-align: center;
     }
 
-    /* ── TEXTE DESCRIPTION ── */
     .text-block {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -289,7 +284,6 @@
     }
     .text-block p strong { color: var(--cyan); font-weight: 500; }
 
-    /* ── ACCORDION INSIGNE ── */
     .accordion {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -324,7 +318,6 @@
     }
     .accordion-body p strong { color: var(--cyan); font-weight: 500; opacity: .8; }
 
-    /* ── MISSION PRINCIPALE ── */
     .mission-principale {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -359,7 +352,6 @@
       font-size: 1rem; line-height: 1.8; color: var(--text);
     }
 
-    /* ── TIMELINE MISSIONS ── */
     .missions-timeline {
       position: relative;
       padding-left: 2rem;
@@ -404,7 +396,6 @@
       font-size: .92rem; line-height: 1.6; color: var(--text);
     }
 
-    /* ── SCHÉMA TOPOLOGIE ── */
     .schema-block {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -446,7 +437,6 @@
     }
     .schema-legende p strong { color: var(--text); font-weight: 500; }
 
-    /* ── GRILLE COMPÉTENCES ── */
     .competences-duo {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -503,7 +493,6 @@
       background: rgba(0,245,255,0.1); border-color: rgba(0,245,255,0.5);
     }
 
-    /* ── BLOC APPRENTISSAGE ── */
     .apprentissage-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -546,7 +535,6 @@
     .apprentissage-bloc.net p strong { color: var(--cyan); font-weight: 500; }
     .apprentissage-bloc.sys p strong { color: var(--yellow); font-weight: 500; }
 
-    /* ── RAPPORT ── */
     .rapport-card {
       background: var(--panel);
       border: 1px solid rgba(0,245,255,0.2);
@@ -588,7 +576,6 @@
     .rapport-btn:hover { color: var(--bg); }
     .rapport-btn:hover::before { transform: translateX(0); }
 
-    /* ── BILAN DOUBLE ── */
     .bilan-duo {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -630,7 +617,6 @@
     .bilan-bloc.experience p strong { color: var(--green); font-weight: 500; }
     .bilan-bloc.avenir p strong { color: var(--magenta); font-weight: 500; }
 
-    /* Devise */
     .devise-bloc {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -689,7 +675,6 @@
       color: var(--text-dim);
     }
 
-    /* ── BACK / FOOTER ── */
     .back-section {
       position: relative; z-index: 2;
       padding: 3rem 5rem 5rem;
