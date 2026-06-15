@@ -67,7 +67,6 @@
       );
     }
 
-    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
@@ -98,7 +97,6 @@
     nav a.active { color: var(--cyan); }
     nav a.active::after { width: 100%; }
 
-    /* SUBNAV */
     .proj-subnav {
       position: sticky; top: 65px; z-index: 90;
       display: flex; gap: 0;
@@ -121,7 +119,6 @@
     .subnav-item:hover { color: var(--cyan); }
     .subnav-item.active { color: var(--cyan); border-bottom-color: var(--cyan); }
 
-    /* PAGE HEADER */
     .page-header {
       position: relative; z-index: 2;
       padding: 9rem 5rem 4rem;
@@ -156,14 +153,12 @@
       color: var(--cyan); background: rgba(0,245,255,0.05);
     }
 
-    /* LAYOUT PRINCIPAL */
     .content {
       position: relative; z-index: 2;
       max-width: 900px; margin: 0 auto;
       padding: 4rem 5rem;
     }
 
-    /* SECTION LABEL */
     .section-label {
       font-family: 'Share Tech Mono', monospace;
       font-size: .65rem; letter-spacing: .3em; text-transform: uppercase;
@@ -175,7 +170,6 @@
       background: linear-gradient(90deg, var(--border), transparent);
     }
 
-    /* BLOC TEXTE */
     .text-block {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -189,8 +183,7 @@
       font-size: 1rem; line-height: 1.85; color: var(--text);
     }
     .text-block p strong { color: var(--cyan); font-weight: 500; }
-
-    /* BLOC IMAGE */
+    
     .img-block {
       margin-bottom: 2rem;
       position: relative;
@@ -220,7 +213,7 @@
       );
       z-index: 1;
     }
-    /* Placeholder quand pas encore d'image */
+
     .img-placeholder {
       width: 100%; padding: 3.5rem 2rem;
       background: var(--panel);
@@ -234,7 +227,7 @@
     }
     .img-placeholder span { color: var(--cyan); }
 
-    /* BLOC LIEN GIT */
+
     .git-block {
       background: var(--panel);
       border: 1px solid rgba(0,245,255,0.2);
@@ -276,7 +269,7 @@
     .git-btn:hover { color: var(--bg); }
     .git-btn:hover::before { transform: translateX(0); }
 
-    /* CONCLUSION */
+
     .conclusion-block {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -290,7 +283,7 @@
     }
     .conclusion-block p strong { color: var(--magenta); font-weight: 500; }
 
-    /* DIVIDER */
+
     .divider {
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--cyan), transparent);
@@ -298,7 +291,7 @@
       position: relative; z-index: 2;
     }
 
-    /* BACK */
+
     .back-section {
       position: relative; z-index: 2;
       padding: 3rem 5rem 5rem;
@@ -562,7 +555,6 @@
       dot.style.top     = e.clientY + 'px';
     });
 
-    // Subnav active au scroll
     const ids = ['intro','reseau','telephonie','mqtt','web','conclusion'];
     const subnavItems = document.querySelectorAll('.subnav-item');
     window.addEventListener('scroll', () => {
