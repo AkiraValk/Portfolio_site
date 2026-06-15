@@ -69,7 +69,6 @@
       );
     }
 
-    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
@@ -99,8 +98,7 @@
     nav a:hover::after { width: 100%; }
     nav a.active { color: var(--cyan); }
     nav a.active::after { width: 100%; }
-
-    /* MAIN */
+    
     main {
       position: relative; z-index: 2;
       flex: 1;
@@ -116,14 +114,12 @@
       animation: fadeInUp .7s ease both;
     }
 
-    /* TAG */
     .tag {
       font-family: 'Share Tech Mono', monospace;
       font-size: .7rem; letter-spacing: .3em; text-transform: uppercase;
       color: var(--magenta); margin-bottom: 1rem;
     }
 
-    /* TITRE */
     .contact-wrap h1 {
       font-family: 'Orbitron', sans-serif;
       font-size: clamp(2rem, 5vw, 3rem);
@@ -138,7 +134,6 @@
       line-height: 1.7; margin-bottom: 3rem;
     }
 
-    /* CARTES CONTACT */
     .contact-cards {
       display: flex;
       flex-direction: column;
@@ -208,7 +203,6 @@
     .contact-card:nth-child(2):hover .contact-arrow { color: var(--magenta); }
     .contact-card:nth-child(3):hover .contact-arrow { color: var(--green); }
 
-    /* DISPO BADGE */
     .dispo {
       display: flex; align-items: center; gap: .8rem;
       font-family: 'Share Tech Mono', monospace;
@@ -229,7 +223,6 @@
       50%       { opacity: .4; }
     }
 
-    /* FOOTER */
     footer {
       position: relative; z-index: 2;
       border-top: 1px solid var(--border);
