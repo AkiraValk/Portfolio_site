@@ -159,6 +159,21 @@
       border: 1px solid rgba(0,245,255,0.25);
       color: var(--cyan); background: rgba(0,245,255,0.05);
     }
+
+    .header-visual {
+      position: absolute;
+      top: 9rem; right: 5rem;
+      width: 320px; height: 380px;
+    }
+    .header-visual img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 20px rgba(0,245,255,0.15));
+    }
+    @media (max-width: 900px) {
+      .header-visual { display: none; }
+    }
+    
     .header-dispo {
       display: inline-flex; align-items: center; gap: .7rem;
       font-family: 'Share Tech Mono', monospace;
